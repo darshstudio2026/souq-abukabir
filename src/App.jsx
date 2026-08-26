@@ -1,7 +1,7 @@
 // Phase 1 verification screen — confirms Vite + Tailwind + RTL + fonts + Firebase
 // bootstrapping are all wired correctly before Phase 2 screens are built.
 import { useEffect, useState } from "react";
-import { CITY_ID } from "./lib/firebase";
+import { CITY_ID, isFirebaseConfigured } from "./lib/firebase";
 
 const checks = [
   { label: "React + Vite", ok: true },
@@ -11,21 +11,6 @@ const checks = [
 ];
 
 export default function App() {
-  const [envOk, setEnvOk] = useState(null);
-
-  useEffect(() => {
-    const keys = [
-      "VITE_FIREBASE_API_KEY",
-      "VITE_FIREBASE_AUTH_DOMAIN",
-      "VITE_FIREBASE_PROJECT_ID",
-      "VITE_FIREBASE_STORAGE_BUCKET",
-      "VITE_FIREBASE_MESSAGING_SENDER_ID",
-      "VITE_FIREBASE_APP_ID",
-    ];
-    const filled = keys.filter((k) => import.meta.env[k]);
-    setEnvOk(filled.length);
-  }, []);
-
   return (
     <div className="min-h-screen flex flex-col items-center justify-center px-6 py-10 gap-8">
       <div className="w-full max-w-sm text-center">
@@ -53,8 +38,8 @@ export default function App() {
           ))}
           <li className="flex items-center justify-between text-sm">
             <span>Firebase env variables</span>
-            <span className={envOk ? "text-success font-bold" : "text-clay font-bold"}>
-              {envOk === null ? "…" : envOk > 0 ? `✓ (${envOk}/6)` : "لسه فاضية"}
+            <span className={isFirebaseConfigured ? "text-success font-bold" : "text-clay font-bold"}>
+              {isFirebaseConfigured ? "✓ متصل" : "لسه فاضية (بيانات وهمية)"}
             </span>
           </li>
           <li className="flex items-center justify-between text-sm">
