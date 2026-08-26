@@ -1,13 +1,14 @@
 import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
-import tailwindcss from '@tailwindcss/vite'
 import { VitePWA } from 'vite-plugin-pwa'
 
 // https://vite.dev/config/
+// Note: Tailwind runs through the standard PostCSS pipeline (postcss.config.js)
+// rather than the @tailwindcss/vite (v4) plugin, because that plugin depends on
+// Lightning CSS's native binary, which does not run inside StackBlitz WebContainers.
 export default defineConfig({
   plugins: [
     react(),
-    tailwindcss(),
     VitePWA({
       registerType: 'autoUpdate',
       manifestFilename: 'manifest.json',

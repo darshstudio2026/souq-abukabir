@@ -1,23 +1,6 @@
-@import "tailwindcss";
-
-@theme {
-  /* Palette — souq أبوكبير: sand & copper, teal shutters */
-  --color-sand: #f2ead8;
-  --color-sand-dark: #e7d9b8;
-  --color-ink: #2b231c;
-  --color-ink-soft: #6b5f4f;
-  --color-teal: #14524a;
-  --color-teal-dark: #0d3934;
-  --color-teal-light: #1f6e63;
-  --color-amber: #c17817;
-  --color-amber-light: #e3a94a;
-  --color-clay: #a23e27;
-  --color-success: #2f7a4d;
-  --color-paper: #faf6ec;
-
-  --font-display: "Cairo", "Tajawal", sans-serif;
-  --font-body: "Tajawal", "Cairo", sans-serif;
-}
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
 @layer base {
   html {
@@ -34,7 +17,7 @@
   h3,
   h4,
   .font-display {
-    font-family: var(--font-display);
+    font-family: theme("fontFamily.display");
   }
 
   /* Keep numerals/prices left-to-right friendly even inside RTL flow */
@@ -44,8 +27,8 @@
   }
 
   ::selection {
-    background-color: var(--color-amber-light);
-    color: var(--color-ink);
+    background-color: theme("colors.amber.light");
+    color: theme("colors.ink");
   }
 }
 

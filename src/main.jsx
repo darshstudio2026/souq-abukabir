@@ -1,15 +1,25 @@
 import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
-import { registerSW } from "virtual:pwa-register";
 import "./index.css";
 import App from "./App.jsx";
-
-// Registers the generated service worker and silently pulls new versions
-// in the background; reloads are left to the next natural navigation.
-registerSW({ immediate: true });
 
 createRoot(document.getElementById("root")).render(
   <StrictMode>
     <App />
   </StrictMode>
 );
+
+// Service worker registration happens after the app has already mounted, and
+// is wrapped defensively: some sandboxed preview environments (e.g. embedded
+// iframes) restrict service workers, and that must never white-screen the app.
+if ("serviceWorker" in navigator) {
+  import("virtual:pwa-register")
+    .then(({ registerSW }) => {
+      try {
+        registerSW({ immediate: true });
+      } catch (err) {
+        console.warn("Service worker registration skipped:", err);
+      }
+    })
+    .catch((err) => console.warn("PWA register module unavailable:", err));
+}
