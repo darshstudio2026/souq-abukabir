@@ -1,0 +1,12 @@
+<svg width="512" height="512" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg">
+  <rect width="512" height="512" rx="112" fill="#14524A"/>
+  <!-- khayamiya-inspired arabesque corner motif -->
+  <g stroke="#C17817" stroke-width="10" fill="none" opacity="0.55">
+    <path d="M40 130 Q 130 40 220 130" />
+    <path d="M292 382 Q 382 292 472 382" />
+  </g>
+  <!-- stylized stall / tent roofline forming a "س" swash -->
+  <path d="M120 300 L 180 190 L 240 260 L 300 160 L 360 260 L 400 210" stroke="#E3A94A" stroke-width="16" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+  <circle cx="256" cy="256" r="150" stroke="#F2EAD8" stroke-width="6" fill="none" opacity="0.35"/>
+  <text x="256" y="410" font-family="Cairo, sans-serif" font-size="72" font-weight="800" fill="#F2EAD8" text-anchor="middle">سوق</text>
+</svg>
