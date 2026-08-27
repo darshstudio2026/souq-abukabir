@@ -6,7 +6,10 @@ import { VitePWA } from 'vite-plugin-pwa'
 // Note: Tailwind runs through the standard PostCSS pipeline (postcss.config.js)
 // rather than the @tailwindcss/vite (v4) plugin, because that plugin depends on
 // Lightning CSS's native binary, which does not run inside StackBlitz WebContainers.
-export default defineConfig({
+export default defineConfig(({ command }) => ({
+  // GitHub Pages serves this project from /souq-abukabir/, not from the domain
+  // root, so production builds need that base path. Dev server stays at "/".
+  base: command === 'build' ? '/souq-abukabir/' : '/',
   plugins: [
     react(),
     VitePWA({
@@ -73,4 +76,4 @@ export default defineConfig({
   server: {
     host: true,
   },
-})
+}))
